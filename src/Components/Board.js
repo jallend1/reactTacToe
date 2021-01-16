@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Square from  './Square';
 
 const Board = () => {
@@ -15,19 +15,33 @@ const Board = () => {
     
     const [gameStatus, setGameStatus] = useState(Array(9).fill(null));
     const [isX, setIsX] = useState(true);
+    const [isGameOver, setIsGameOver] = useState(false);
 
-    const handleClick = cell => {
-        console.log(cell);
-        const currentStatus = gameStatus.slice();
-        isX ? currentStatus[cell] = 'X' : currentStatus[cell] = 'O';
-        setIsX(!isX);
-        setGameStatus(currentStatus)
-        
-        console.log(gameStatus);
+    const checkVictory = () => {
+        victories.forEach(([a, b, c]) => {
+            if( gameStatus[a] && 
+                gameStatus[b] === gameStatus[a] && 
+                gameStatus[c] === gameStatus[a]){
+                    setIsGameOver(true);
+                }
+        })
+
     }
+
+    const handleClick = cellLocation => {
+        const currentStatus = gameStatus.slice();
+        isX ? currentStatus[cellLocation] = 'X' : currentStatus[cellLocation] = 'O';
+        setIsX(!isX);
+        setGameStatus(currentStatus);
+    }
+
+    useEffect(checkVictory, [gameStatus])
 
     return (
     <>
+        <header>
+            <p>Is the game over? {isGameOver ? 'Yes!' : 'No'}</p>
+        </header>
         <div className="row">
             <Square cellLocation={0} val={gameStatus[0]} onClick={handleClick}/>
             <Square cellLocation={1} val={gameStatus[1]} onClick={handleClick}/>
