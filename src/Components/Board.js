@@ -29,7 +29,6 @@ const Board = () => {
 
     const handleClick = cellLocation => {
         if(isGameOver) return;                                      // If game is over, prevents further mucking about
-
         const currentStatus = gameStatus.slice();
         isX ? currentStatus[cellLocation] = 'X' : currentStatus[cellLocation] = 'O';
         setIsX(!isX);
