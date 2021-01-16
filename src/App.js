@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
 import './index.css';
-import Board from './Components/Board'
+import Header from './Components/Header';
+import Board from './Components/Board';
 
 const App = () => {
-    const [isGameOver, setIsGameOver] = useState(false);                // Game over?
+    const [isGameOver, setIsGameOver] = useState(false);                            // Game over?
     const checkVictory = (gameStatus) => {                                        //Compares current board to possible victories
         const victories = [
             [0, 1, 2],
@@ -26,9 +27,8 @@ const App = () => {
     }
     return (
         <>
-            <h1>React Tac Toe</h1>
-            <h2>Is the game over? {isGameOver ? <h2>Yes!</h2> : <h2>No!</h2>}</h2>
-            <Board isGameOver={isGameOver} checkVictory={checkVictory}/>
+            <Header isGameOver = { isGameOver } />
+            <Board isGameOver = { isGameOver } checkVictory = { checkVictory }/>
         </>
     )
 }
