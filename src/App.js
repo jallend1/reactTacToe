@@ -9,7 +9,7 @@ const App = () => {
     const [gameStatus, setGameStatus] = useState(Array(9).fill(null));              // Gameboard
     const [isGameOver, setIsGameOver] = useState(false);                            // Game over?
     const [isX, setIsX] = useState(true);                                           // X or O's turn
-    const [history, setHistory] = useState(Array);
+    const [history, setHistory] = useState([Array(9).fill(null)]);
 
     const checkVictory = (gameStatus) => {                                           //Compares current board to possible victories
         const victories = [
@@ -31,6 +31,15 @@ const App = () => {
         });
     }
 
+    const goBack = (moveNumber) => {
+        console.log(moveNumber)
+        console.log(gameStatus)
+        console.log(history[moveNumber])
+        const newHistory = history.slice(0, moveNumber);
+        setGameStatus(history[moveNumber])
+        setHistory(newHistory);
+
+    }
     const handleMove = cellLocation => {
         if(isGameOver) return;                                                      // If game is over, prevents further mucking about
         if(gameStatus[cellLocation] !== null) return;                               // If square already played, ignores it
@@ -38,9 +47,9 @@ const App = () => {
         isX ? currentStatus[cellLocation] = 'X' : currentStatus[cellLocation] = 'O';
         const currentHistory = history.slice();
         currentHistory.push(currentStatus);
+        setHistory(currentHistory);
         setIsX(!isX);
         setGameStatus(currentStatus);
-        setHistory(currentHistory);
     }
 
     useEffect(() => checkVictory(gameStatus), [gameStatus]);                        // Checks for victory conditions after current board is updated
@@ -48,8 +57,8 @@ const App = () => {
     return (
         <>
             <Header isGameOver = { isGameOver } />
-            <Board gameStatus = {gameStatus} handleMove = {handleMove} />
-            <History history = {history} />
+            <Board gameStatus = { gameStatus } handleMove = { handleMove } />
+            <History history = { history } goBack = { goBack }/>
         </>
     )
 }
