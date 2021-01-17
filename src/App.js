@@ -3,13 +3,15 @@ import { useState, useEffect } from 'react';
 import './index.css';
 import Header from './Components/Header';
 import Board from './Components/Board';
+import History from './Components/History';
 
 const App = () => {
     const [gameStatus, setGameStatus] = useState(Array(9).fill(null));              // Gameboard
     const [isGameOver, setIsGameOver] = useState(false);                            // Game over?
     const [isX, setIsX] = useState(true);                                           // X or O's turn
+    const [history, setHistory] = useState(Array);
 
-    const checkVictory = (gameStatus) => {                                        //Compares current board to possible victories
+    const checkVictory = (gameStatus) => {                                           //Compares current board to possible victories
         const victories = [
             [0, 1, 2],
             [3, 4, 5],
@@ -29,21 +31,25 @@ const App = () => {
         });
     }
 
-    const handleClick = cellLocation => {
-        if(isGameOver) return;                                      // If game is over, prevents further mucking about
-        if(gameStatus[cellLocation] !== null) return;
+    const handleMove = cellLocation => {
+        if(isGameOver) return;                                                      // If game is over, prevents further mucking about
+        if(gameStatus[cellLocation] !== null) return;                               // If square already played, ignores it
         const currentStatus = gameStatus.slice();
         isX ? currentStatus[cellLocation] = 'X' : currentStatus[cellLocation] = 'O';
+        const currentHistory = history.slice();
+        currentHistory.push(currentStatus);
         setIsX(!isX);
         setGameStatus(currentStatus);
+        setHistory(currentHistory);
     }
 
-    useEffect(() => checkVictory(gameStatus), [gameStatus]);                          // Checks for victory conditions after current board is updated
+    useEffect(() => checkVictory(gameStatus), [gameStatus]);                        // Checks for victory conditions after current board is updated
 
     return (
         <>
             <Header isGameOver = { isGameOver } />
-            <Board gameStatus = {gameStatus} handleClick = {handleClick} />
+            <Board gameStatus = {gameStatus} handleMove = {handleMove} />
+            <History history = {history} />
         </>
     )
 }
