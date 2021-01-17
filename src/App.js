@@ -42,8 +42,8 @@ const App = () => {
 
     return (
         <>
-            <Header gameStatus = {gameStatus} isGameOver = { isGameOver } handleClick = {handleClick} />
-            <Board gameStatus = {gameStatus} isGameOver = { isGameOver } handleClick = {handleClick} />
+            <Header isGameOver = { isGameOver } />
+            <Board gameStatus = {gameStatus} handleClick = {handleClick} />
         </>
     )
 }
