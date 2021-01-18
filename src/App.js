@@ -37,7 +37,7 @@ const App = () => {
         setGameStatus(history[moveNumber])
         setHistory(newHistory);
         setIsX(playerTurn);
-
+        setIsGameOver(false);
     }
     const handleMove = cellLocation => {
         if(isGameOver) return;                                                      // If game is over, prevents further mucking about
