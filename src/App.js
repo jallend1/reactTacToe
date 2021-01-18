@@ -4,6 +4,7 @@ import './index.css';
 import Header from './Components/Header';
 import Board from './Components/Board';
 import History from './Components/History';
+import Footer from './Components/Footer';
 
 const App = () => {
     const [gameStatus, setGameStatus] = useState(Array(9).fill(null));              // Gameboard
@@ -55,9 +56,12 @@ const App = () => {
 
     return (
         <>
-            <Header isGameOver = { isGameOver } />
-            <Board gameStatus = { gameStatus } handleMove = { handleMove } />
-            <History history = { history } goBack = { goBack }/>
+            <Header />
+            <div className="container">
+                <Board gameStatus = { gameStatus } handleMove = { handleMove } />
+                <History history = { history } goBack = { goBack }/>
+            </div>
+            <Footer isGameOver = { isGameOver } isX = { isX }/>
         </>
     )
 }

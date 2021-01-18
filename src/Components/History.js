@@ -1,6 +1,6 @@
 const History = ({history, goBack}) => {
     const buttons = history.map((gameboard, index) => {
-        if(history.length > 1){
+        if(history.length > 1){                                                                         // Only continues if there's more than just the initial blank board
             if(index === 0){
                 return <button onClick={() => goBack(index) } key={index}>Go back to start</button>;
             }

@@ -1,10 +1,7 @@
-const Header = ({isGameOver}) => {
+const Header = ({isGameOver, isX}) => {
     return (
         <header>
             <h1>React Tac Toe</h1>
-            <h2>Is the game over? 
-                <span> {isGameOver ? 'Yes' : 'No!'}</span>
-            </h2> 
         </header>
     )
 }
