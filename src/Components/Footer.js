@@ -1,11 +1,11 @@
-const Footer = ({isGameOver, isX, gameStatus}) => {
+const Footer = ({isGameOver, isX, gameStatus, goBack}) => {
     const victoryState = () => {
         if(isGameOver){
             const winner = isX ? 'O' : 'X';
             return (
                 <div className="victory">
                     <h2>{winner} is the winner!</h2>
-                    <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--accent history-button">Play Again?</button>
+                    <button onClick={() => goBack(0) } className="mdl-button mdl-js-button mdl-button--raised mdl-button--accent history-button">Play Again?</button>
                 </div>
             )
         }

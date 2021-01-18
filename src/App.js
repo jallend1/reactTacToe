@@ -61,7 +61,7 @@ const App = () => {
                 <Board gameStatus = { gameStatus } handleMove = { handleMove } />
                 <History history = { history } goBack = { goBack }/>
             </div>
-            <Footer isGameOver = { isGameOver } isX = { isX } gameStatus = { gameStatus }/>
+            <Footer isGameOver = { isGameOver } isX = { isX } gameStatus = { gameStatus } goBack = { goBack }/>
         </>
     )
 }
