@@ -60,3 +60,7 @@ main > .row:nth-child(2) > .cell {
 .history-button {
   margin: 0.25em 0;
 }
+
+.victory {
+  text-align: center;
+}
