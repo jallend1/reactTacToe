@@ -32,12 +32,11 @@ const App = () => {
     }
 
     const goBack = (moveNumber) => {
-        console.log(moveNumber)
-        console.log(gameStatus)
-        console.log(history[moveNumber])
-        const newHistory = history.slice(0, moveNumber);
+        const newHistory = history.slice(0, moveNumber + 1);
+        const playerTurn = moveNumber % 2 === 0;
         setGameStatus(history[moveNumber])
         setHistory(newHistory);
+        setIsX(playerTurn);
 
     }
     const handleMove = cellLocation => {
