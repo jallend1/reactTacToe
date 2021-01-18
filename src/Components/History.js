@@ -1,9 +1,16 @@
 const History = ({history, goBack}) => {
     const buttons = history.map((gameboard, index) => {
         if(history.length > 1){
-            return index !== 0 ?  
-                <button onClick={() => goBack(index) } key={index}>Go back to move {index}</button> :
-                <button onClick={() => goBack(index) } key={index}>Go back to start</button>
+            if(index === 0){
+                return <button onClick={() => goBack(index) } key={index}>Go back to start</button>;
+            }
+            else if(index === history.length - 1){
+                return null;
+            }
+            else{
+                return <button onClick={() => goBack(index) } key={index}>Go back to move {index}</button>
+            }
+                
         }
         return null;
     });
