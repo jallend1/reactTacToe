@@ -4,7 +4,7 @@ const History = ({history, goBack}) => {
             if(index === 0){
                 return <button onClick={() => goBack(index) } key={index} className="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Go back to start</button>;
             }
-            else if(index === history.length - 1){
+            else if(index === history.length - 1){                                                      // Doesn't display Go Back button for current move
                 return null;
             }
             else{

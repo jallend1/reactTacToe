@@ -52,7 +52,7 @@ const App = () => {
         setGameStatus(currentStatus);
     }
 
-    useEffect(() => checkVictory(gameStatus), [gameStatus]);                        // Checks for victory conditions after current board is updated
+    useEffect(() => checkVictory(gameStatus), [gameStatus, isGameOver]);                        // Checks for victory conditions after current board is updated
 
     return (
         <>
@@ -61,7 +61,7 @@ const App = () => {
                 <Board gameStatus = { gameStatus } handleMove = { handleMove } />
                 <History history = { history } goBack = { goBack }/>
             </div>
-            <Footer isGameOver = { isGameOver } isX = { isX }/>
+            <Footer isGameOver = { isGameOver } isX = { isX } gameStatus = { gameStatus }/>
         </>
     )
 }
