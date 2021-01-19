@@ -10,7 +10,12 @@ const Footer = ({isGameOver, isX, gameStatus, goBack}) => {
             )
         }
         else if(gameStatus.indexOf(null) === -1){
-            return <h2>We've got a draw, folks!</h2>
+            return (
+                <div className="victory">
+                    <h2>We've got a draw, folks!</h2>
+                    <button onClick={() => goBack(0) } className="mdl-button mdl-js-button mdl-button--raised mdl-button--accent history-button">Play Again?</button>
+                </div>
+                )
         }
         return null;
     }
